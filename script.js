@@ -28,14 +28,15 @@ const bluePen = document.createElement("button");
 bluePen.classList.add("blue-p");
 bluePen.textContent = "Blue";
 buttonContainer.appendChild(bluePen);
-
 // body içerisine container1 sınıflı ana div eklendi.
 const containerUst = document.createElement("div");
 containerUst.classList.add("container1");
 document.body.appendChild(containerUst);
 //
-////
-
+const colorPicker = document.createElement("input");
+colorPicker.setAttribute("type", "color");
+colorPicker.classList.add("color-p");
+buttonContainer.appendChild(colorPicker);
 // üst konteynır içerisine alt bir konteynır eklendi.
 // const containerAlt = document.createElement("div");
 // containerAlt.classList.add("container2");
@@ -91,6 +92,8 @@ btn.addEventListener("click", function () {
       //   el.addEventListener("mouseover", doit, false);
       // });
     );
+    squaresInC = document.querySelectorAll(".square");
+    callSquares();
   } else numberOfs = Number(prompt("Please enter valid number, from 1 to 100"));
 });
 // kareleri maviye boyama
@@ -102,32 +105,20 @@ function reset() {
   squaresInC.forEach((e) => e.parentNode.removeChild(e));
 }
 //
-btn2.addEventListener("click", function () {
-  currentPen = "white";
-});
-//
-btn3.addEventListener("click", function () {
-  currentPen = "rgb";
-});
-//
-bluePen.addEventListener("click", function () {
-  currentPen = "blue";
-});
-////
-blackPen.addEventListener("click", function () {
-  currentPen = "black";
-});
 
-squaresInC.forEach(function (el) {
-  el.addEventListener("mouseover", function (e) {
-    if (currentPen === "blue") colorBlue(e);
-    // el.style.backgroundColor = "blue";
-    else if (currentPen === "black") colorBlack(e);
-    // el.style.backgroundColor = "black";
-    else if (currentPen === "rgb") colorGen(e);
-    else if (currentPen === "white") colorWhite(e);
+function callSquares() {
+  squaresInC.forEach(function (el) {
+    el.addEventListener("mouseover", function (e) {
+      if (currentPen === "blue") colorBlue(e);
+      // el.style.backgroundColor = "blue";
+      else if (currentPen === "black") colorBlack(e);
+      // el.style.backgroundColor = "black";
+      else if (currentPen === "rgb") colorGen(e);
+      else if (currentPen === "white") colorWhite(e);
+    });
   });
-});
+}
+callSquares();
 
 function colorBlack(e) {
   e.target.style.backgroundColor = "black";
@@ -144,6 +135,22 @@ function colorGen(e) {
   const b = Math.floor(Math.random() * 256);
   e.target.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
 }
+
+btn2.addEventListener("click", function () {
+  currentPen = "white";
+});
+//
+btn3.addEventListener("click", function () {
+  currentPen = "rgb";
+});
+//
+bluePen.addEventListener("click", function () {
+  currentPen = "blue";
+});
+////
+blackPen.addEventListener("click", function () {
+  currentPen = "black";
+});
 
 // if ((currentPen = "black")) {
 //   squaresInC = document.querySelectorAll(".square");
