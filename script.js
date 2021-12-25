@@ -12,7 +12,7 @@ btn.textContent = "refresh";
 const btn2 = document.createElement("button");
 btn2.classList.add("buton2");
 buttonContainer.appendChild(btn2);
-btn2.textContent = "clean";
+btn2.textContent = "clear";
 //
 const btn3 = document.createElement("button");
 btn3.classList.add("buton3");
@@ -72,9 +72,6 @@ let squaresInC = document.querySelectorAll(".square");
 /////////////////////////
 // refresh butonuna basıldığında yeni bir grid
 btn.addEventListener("click", function () {
-  // squaresInC.forEach(function (el) {
-  //   el.style.backgroundColor = "white";
-  // });
   reset();
   let numberOfs = Number(
     prompt("Please enter number of squares per side, from 1 to 100")
@@ -83,6 +80,7 @@ btn.addEventListener("click", function () {
   if (numberOfs >= 1 && numberOfs <= 100) {
     starterColumns = Number(numberOfs);
     starterRows = Number(numberOfs);
+    currentPen = "black";
     buildGrid(
       Number(starterColumns),
       Number(starterRows),
@@ -101,44 +99,55 @@ btn.addEventListener("click", function () {
 // }
 
 function reset() {
-  document
-    .querySelectorAll(".square")
-    .forEach((e) => e.parentNode.removeChild(e));
+  squaresInC.forEach((e) => e.parentNode.removeChild(e));
 }
 //
 btn2.addEventListener("click", function () {
-  squaresInC.forEach(function (el) {
-    el.style.backgroundColor = "white";
-  });
+  currentPen = "white";
 });
 //
 btn3.addEventListener("click", function () {
-  squaresInC = document.querySelectorAll(".square");
-  squaresInC.forEach(function (el) {
-    el.addEventListener("mouseover", colorGen, false);
-  });
+  currentPen = "rgb";
 });
 //
-function colorGen(e) {
-  const r = Math.floor(Math.random() * 256);
-  const g = Math.floor(Math.random() * 256);
-  const b = Math.floor(Math.random() * 256);
-  e.target.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
-}
+bluePen.addEventListener("click", function () {
+  currentPen = "blue";
+});
 ////
 blackPen.addEventListener("click", function () {
   currentPen = "black";
 });
 
 squaresInC.forEach(function (el) {
-  if ((currentPen = "blue")) {
-    el.addEventListener("mouseover", colorBlue, false);
-  }
-  if ((currentPen = "black")) {
-    el.addEventListener("mouseover", colorBlack, false);
-  }
+  el.addEventListener("mouseover", function (e) {
+    if (currentPen === "blue") colorBlue(e);
+    // el.style.backgroundColor = "blue";
+    else if (currentPen === "black") colorBlack(e);
+    // el.style.backgroundColor = "black";
+    else if (currentPen === "rgb") colorGen(e);
+    else if (currentPen === "white") colorWhite(e);
+  });
 });
 
+function colorBlack(e) {
+  e.target.style.backgroundColor = "black";
+}
+function colorBlue(e) {
+  e.target.style.backgroundColor = "blue";
+}
+function colorWhite(e) {
+  e.target.style.backgroundColor = "white";
+}
+function colorGen(e) {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+  e.target.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+}
+
+callSquares function {
+  
+}
 // if ((currentPen = "black")) {
 //   squaresInC = document.querySelectorAll(".square");
 //   squaresInC.forEach(function (el) {
@@ -152,17 +161,7 @@ squaresInC.forEach(function (el) {
 //   });
 // }
 
-function colorBlack(e) {
-  e.target.style.backgroundColor = "black";
-}
 /// Blue'ya basınca currentpen blue olsun.
-bluePen.addEventListener("click", function () {
-  currentPen = "blue";
-});
-
-function colorBlue(e) {
-  e.target.style.backgroundColor = "blue";
-}
 
 ///
 
