@@ -94,6 +94,8 @@ btn.addEventListener("click", function () {
     );
     squaresInC = document.querySelectorAll(".square");
     callSquares();
+    startup();
+    updateFirst();
   } else numberOfs = Number(prompt("Please enter valid number, from 1 to 100"));
 });
 // kareleri maviye boyama
@@ -119,7 +121,46 @@ function callSquares() {
   });
 }
 callSquares();
+/////////////////////////
+//////color picker///////
+/////////////////////////
+let colorWell;
+let defaultColor = "#0000ff";
+window.addEventListener("load", startup, false);
+function startup() {
+  colorWell = document.querySelector(".color-p");
+  colorWell.value = defaultColor;
+  colorWell.addEventListener("input", updateFirst, false);
+  colorWell.addEventListener("change", updateAll, false);
+  colorWell.select();
+}
+function updateFirst(event) {
+  squaresInC.forEach(function (el) {
+    el.addEventListener("mouseover", function (e) {
+      if (squaresInC) {
+        el.style.backgroundColor = event.target.value;
+      }
+    });
+  });
+}
+function updateAll(event) {
+  squaresInC.forEach(function (p) {
+    p.style.backgroundcolor = event.target.value;
+  });
+}
+/*************************/
+/*************************/
+/*************************/
+// colorPicker.addEventListener("input", updateFirst, false);
+// colorPicker.addEventListener("change", watchColorPicker, false);
 
+// function watchColorPicker(event) {
+//   squaresInC.forEach(function (el) {
+//     el.addEventListener("mouseover", function (e) {
+//       el.style.color = event.target.value;
+//     });
+//   });
+// }
 function colorBlack(e) {
   e.target.style.backgroundColor = "black";
 }
@@ -150,6 +191,10 @@ bluePen.addEventListener("click", function () {
 ////
 blackPen.addEventListener("click", function () {
   currentPen = "black";
+});
+//
+colorPicker.addEventListener("click", function () {
+  currentPen = "colorPicker";
 });
 
 // if ((currentPen = "black")) {
