@@ -1,23 +1,34 @@
 "use strict";
 //
+const buttonContainer = document.createElement("div");
+buttonContainer.classList.add("buton-c");
+document.body.appendChild(buttonContainer);
+//
 const btn = document.createElement("button");
 btn.classList.add("buton1");
-document.body.appendChild(btn);
+buttonContainer.appendChild(btn);
 btn.textContent = "refresh";
 //
 const btn2 = document.createElement("button");
 btn2.classList.add("buton2");
-document.body.appendChild(btn2);
+buttonContainer.appendChild(btn2);
 btn2.textContent = "clean";
 //
 const btn3 = document.createElement("button");
 btn3.classList.add("buton3");
-document.body.appendChild(btn3);
+buttonContainer.appendChild(btn3);
 btn3.textContent = "rgb";
+//
+const blackPen = document.createElement("button");
+blackPen.classList.add("black-p");
+blackPen.textContent = "Black";
+buttonContainer.appendChild(blackPen);
+
 // body içerisine container1 sınıflı ana div eklendi.
 const containerUst = document.createElement("div");
 containerUst.classList.add("container1");
 document.body.appendChild(containerUst);
+//
 
 // üst konteynır içerisine alt bir konteynır eklendi.
 // const containerAlt = document.createElement("div");
@@ -80,7 +91,7 @@ btn.addEventListener("click", function () {
 });
 // kareleri maviye boyama
 function doit(e) {
-  e.target.style.backgroundColor = "blue";
+  e.target.style.backgroundColor = "black";
 }
 squaresInC.forEach(function (el) {
   el.addEventListener("mouseover", doit, false);
@@ -110,6 +121,18 @@ function colorGen(e) {
   const b = Math.floor(Math.random() * 256);
   e.target.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
 }
+////
+blackPen.addEventListener("click", function () {
+  squaresInC = document.querySelectorAll(".square");
+  squaresInC.forEach(function (el) {
+    el.addEventListener("mouseover", colorBlack, false);
+  });
+});
+
+function colorBlack(e) {
+  e.target.style.backgroundColor = "black";
+}
+
 ///
 
 // squareInC.addEventListener("mouseover", function (e) {
