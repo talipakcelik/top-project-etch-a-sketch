@@ -145,9 +145,6 @@ function colorGen(e) {
   e.target.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
 }
 
-callSquares function {
-  
-}
 // if ((currentPen = "black")) {
 //   squaresInC = document.querySelectorAll(".square");
 //   squaresInC.forEach(function (el) {
