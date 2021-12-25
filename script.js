@@ -23,18 +23,24 @@ const blackPen = document.createElement("button");
 blackPen.classList.add("black-p");
 blackPen.textContent = "Black";
 buttonContainer.appendChild(blackPen);
+//
+const bluePen = document.createElement("button");
+bluePen.classList.add("blue-p");
+bluePen.textContent = "Blue";
+buttonContainer.appendChild(bluePen);
 
 // body içerisine container1 sınıflı ana div eklendi.
 const containerUst = document.createElement("div");
 containerUst.classList.add("container1");
 document.body.appendChild(containerUst);
 //
+////
 
 // üst konteynır içerisine alt bir konteynır eklendi.
 // const containerAlt = document.createElement("div");
 // containerAlt.classList.add("container2");
 // containerUst.appendChild(containerAlt);
-
+let currentPen = "black";
 let starterColumns = 16;
 let starterRows = 16;
 
@@ -82,20 +88,18 @@ btn.addEventListener("click", function () {
       Number(starterRows),
       25,
       document.querySelector(".container1")
+      // squaresInC = document.querySelectorAll(".square");
+      // squaresInC.forEach(function (el) {
+      //   el.addEventListener("mouseover", doit, false);
+      // });
     );
-    squaresInC = document.querySelectorAll(".square");
-    squaresInC.forEach(function (el) {
-      el.addEventListener("mouseover", doit, false);
-    });
   } else numberOfs = Number(prompt("Please enter valid number, from 1 to 100"));
 });
 // kareleri maviye boyama
-function doit(e) {
-  e.target.style.backgroundColor = "black";
-}
-squaresInC.forEach(function (el) {
-  el.addEventListener("mouseover", doit, false);
-});
+// function doit(e) {
+//   e.target.style.backgroundColor = "black";
+// }
+
 function reset() {
   document
     .querySelectorAll(".square")
@@ -123,14 +127,41 @@ function colorGen(e) {
 }
 ////
 blackPen.addEventListener("click", function () {
-  squaresInC = document.querySelectorAll(".square");
-  squaresInC.forEach(function (el) {
-    el.addEventListener("mouseover", colorBlack, false);
-  });
+  currentPen = "black";
 });
+
+squaresInC.forEach(function (el) {
+  if ((currentPen = "blue")) {
+    el.addEventListener("mouseover", colorBlue, false);
+  }
+  if ((currentPen = "black")) {
+    el.addEventListener("mouseover", colorBlack, false);
+  }
+});
+
+// if ((currentPen = "black")) {
+//   squaresInC = document.querySelectorAll(".square");
+//   squaresInC.forEach(function (el) {
+//     el.addEventListener("mouseover", colorBlack, false);
+//   });
+// }
+// if ((currentPen = "blue")) {
+//   squaresInC = document.querySelectorAll(".square");
+//   squaresInC.forEach(function (el) {
+//     el.addEventListener("mouseover", colorBlue, false);
+//   });
+// }
 
 function colorBlack(e) {
   e.target.style.backgroundColor = "black";
+}
+/// Blue'ya basınca currentpen blue olsun.
+bluePen.addEventListener("click", function () {
+  currentPen = "blue";
+});
+
+function colorBlue(e) {
+  e.target.style.backgroundColor = "blue";
 }
 
 ///
