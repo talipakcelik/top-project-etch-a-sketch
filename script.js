@@ -131,7 +131,7 @@ colorPicker.addEventListener("click", function () {
 });
 /////////////////
 function controlButtons() {
-  document.querySelectorAll("button");
+  // document.querySelectorAll("button");
   if (
     currentPen === "black" ||
     currentPen === "blue" ||
