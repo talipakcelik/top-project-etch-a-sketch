@@ -94,8 +94,6 @@ btn.addEventListener("click", function () {
     );
     squaresInC = document.querySelectorAll(".square");
     callSquares();
-    startup();
-    updateFirst();
   } else numberOfs = Number(prompt("Please enter valid number, from 1 to 100"));
 });
 // kareleri maviye boyama
@@ -107,7 +105,50 @@ function reset() {
   squaresInC.forEach((e) => e.parentNode.removeChild(e));
 }
 //
+btn2.addEventListener("click", function () {
+  currentPen = "white";
+  controlButtons();
+});
+//
+btn3.addEventListener("click", function () {
+  currentPen = "rgb";
+  controlButtons();
+});
+//
+bluePen.addEventListener("click", function () {
+  currentPen = "blue";
+  controlButtons();
+});
+////
+blackPen.addEventListener("click", function () {
+  currentPen = "black";
+  controlButtons();
+});
+//
+colorPicker.addEventListener("click", function () {
+  currentPen = "colorPick";
+  controlButtons();
+});
+/////////////////
+function controlButtons() {
+  document.querySelectorAll("button");
+  if (
+    currentPen === "black" ||
+    currentPen === "blue" ||
+    currentPen === "white" ||
+    currentPen === "rgb"
+  ) {
+    callSquares();
+    console.log("colorpick");
+    // startup();
+  } else if (currentPen === "colorPick") {
+    startup();
+    console.log("asda");
+  }
+}
+controlButtons();
 
+//////////////
 function callSquares() {
   squaresInC.forEach(function (el) {
     el.addEventListener("mouseover", function (e) {
@@ -117,16 +158,17 @@ function callSquares() {
       // el.style.backgroundColor = "black";
       else if (currentPen === "rgb") colorGen(e);
       else if (currentPen === "white") colorWhite(e);
+      // window.addEventListener("load", startup, false);
     });
   });
 }
-callSquares();
+// callSquares();
 /////////////////////////
 //////color picker///////
 /////////////////////////
 let colorWell;
 let defaultColor = "#0000ff";
-window.addEventListener("load", startup, false);
+// // window.addEventListener("load", startup, false);
 function startup() {
   colorWell = document.querySelector(".color-p");
   colorWell.value = defaultColor;
@@ -149,6 +191,7 @@ function updateAll(event) {
   });
 }
 /*************************/
+
 /*************************/
 /*************************/
 // colorPicker.addEventListener("input", updateFirst, false);
@@ -176,26 +219,6 @@ function colorGen(e) {
   const b = Math.floor(Math.random() * 256);
   e.target.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
 }
-
-btn2.addEventListener("click", function () {
-  currentPen = "white";
-});
-//
-btn3.addEventListener("click", function () {
-  currentPen = "rgb";
-});
-//
-bluePen.addEventListener("click", function () {
-  currentPen = "blue";
-});
-////
-blackPen.addEventListener("click", function () {
-  currentPen = "black";
-});
-//
-colorPicker.addEventListener("click", function () {
-  currentPen = "colorPicker";
-});
 
 // if ((currentPen = "black")) {
 //   squaresInC = document.querySelectorAll(".square");
