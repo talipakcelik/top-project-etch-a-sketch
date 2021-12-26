@@ -1,5 +1,7 @@
 "use strict";
-//
+/************************/
+/******BUTON ALANI*******/
+/************************/
 const buttonContainer = document.createElement("div");
 buttonContainer.classList.add("buton-c");
 document.body.appendChild(buttonContainer);
@@ -37,14 +39,17 @@ const colorPicker = document.createElement("input");
 colorPicker.setAttribute("type", "color");
 colorPicker.classList.add("color-p");
 buttonContainer.appendChild(colorPicker);
-// üst konteynır içerisine alt bir konteynır eklendi.
-// const containerAlt = document.createElement("div");
-// containerAlt.classList.add("container2");
-// containerUst.appendChild(containerAlt);
+
+/********************************/
+/******BAŞLANGIÇ KOŞULLARI*******/
+/********************************/
 let currentPen = "black";
 let starterColumns = 16;
 let starterRows = 16;
 
+/************************************/
+/******buildGrid (F)*******/
+/************************************/
 function buildGrid(x, y, cellSize, gridElement) {
   gridElement.style.display = "grid";
   gridElement.style.gridTemplateColumns = `repeat(${x}, ${cellSize}px)`;
@@ -67,11 +72,14 @@ buildGrid(
   document.querySelector(".container1")
 );
 
-///////////////////////
-// bütün kareleri seçme
+/*****************************/
+/******KARELERİN SEÇİNİ*******/
+/*****************************/
 let squaresInC = document.querySelectorAll(".square");
-/////////////////////////
-// refresh butonuna basıldığında yeni bir grid
+
+/***************************************/
+/******YENİ GRID OLUŞTURMA BUTONU*******/
+/***************************************/
 btn.addEventListener("click", function () {
   reset();
   let numberOfs = Number(
@@ -96,15 +104,17 @@ btn.addEventListener("click", function () {
     callSquares();
   } else numberOfs = Number(prompt("Please enter valid number, from 1 to 100"));
 });
-// kareleri maviye boyama
-// function doit(e) {
-//   e.target.style.backgroundColor = "black";
-// }
 
+/*****************************/
+/******RESET (F)**************/
+/*****************************/
 function reset() {
   squaresInC.forEach((e) => e.parentNode.removeChild(e));
 }
-//
+
+/**********************************************/
+/******BUTONLAR İÇİN CLICK HANDLER EVENT*******/
+/**********************************************/
 btn2.addEventListener("click", function () {
   currentPen = "white";
   controlButtons();
@@ -129,7 +139,10 @@ colorPicker.addEventListener("click", function () {
   currentPen = "colorPick";
   controlButtons();
 });
-/////////////////
+
+/**************************************************************************************/
+/******HANGİ BUTONA BASILDIĞINI KONTROL EDİN ONA GÖRE FONKSİYON ATAYAN FONKSİYON*******/
+/**************************************************************************************/
 function controlButtons() {
   // document.querySelectorAll("button");
   if (
@@ -146,9 +159,11 @@ function controlButtons() {
     console.log("asda");
   }
 }
-controlButtons();
+controlButtons(); // çıkartıldığı takdirde kullanıcının butonlara basması gerekir, eklenirse default kaleme geçer
 
-//////////////
+/********************************************************************************************/
+/******BUTONLAR İÇİN MOUSEOVER HANDLER'I AÇIP CURRENT KALEME GÖRE RENK ATAYAN FONKSİYON******/
+/********************************************************************************************/
 function callSquares() {
   squaresInC.forEach(function (el) {
     el.addEventListener("mouseover", function (e) {
@@ -162,7 +177,7 @@ function callSquares() {
     });
   });
 }
-// callSquares();
+
 /////////////////////////
 //////color picker///////
 /////////////////////////
@@ -190,20 +205,10 @@ function updateAll(event) {
     p.style.backgroundcolor = event.target.value;
   });
 }
-/*************************/
 
-/*************************/
-/*************************/
-// colorPicker.addEventListener("input", updateFirst, false);
-// colorPicker.addEventListener("change", watchColorPicker, false);
-
-// function watchColorPicker(event) {
-//   squaresInC.forEach(function (el) {
-//     el.addEventListener("mouseover", function (e) {
-//       el.style.color = event.target.value;
-//     });
-//   });
-// }
+/*************************************/
+/******RENK ATAYAN FONKSİYONLAR*******/
+/*************************************/
 function colorBlack(e) {
   e.target.style.backgroundColor = "black";
 }
@@ -219,51 +224,6 @@ function colorGen(e) {
   const b = Math.floor(Math.random() * 256);
   e.target.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
 }
-
-// if ((currentPen = "black")) {
-//   squaresInC = document.querySelectorAll(".square");
-//   squaresInC.forEach(function (el) {
-//     el.addEventListener("mouseover", colorBlack, false);
-//   });
-// }
-// if ((currentPen = "blue")) {
-//   squaresInC = document.querySelectorAll(".square");
-//   squaresInC.forEach(function (el) {
-//     el.addEventListener("mouseover", colorBlue, false);
-//   });
-// }
-
-/// Blue'ya basınca currentpen blue olsun.
-
-///
-
-// squareInC.addEventListener("mouseover", function (e) {
-//   e.target.style.color = "blue";
-//   console.log(e);
-// });
-
-// document.querySelector(".square").addEventListener("mouseover", func, false);
-// document.querySelector(".square").addEventListener("mouseout", func1, false);
-
-// function func() {
-//   document
-//     .querySelector(".square")
-//     .setAttribute("style", "background-color:green;");
-// }
-
-// function func1() {
-//   document
-//     .querySelector(".square")
-//     .setAttribute("style", "background-color:green;");
-// }
-
-/////////////
-
-// for (let i = 0; i < 16; i++) {
-//   for (let j = 0; j < 16; j++) {
-//     const square = document.createElement("div");
-//     square.classList.add("square");
-//     containerAlt.appendChild(square);
-//   }
-//   square.innerHTML += "<br>";
-// }
+/*************************/
+/*************************/
+/*************************/
